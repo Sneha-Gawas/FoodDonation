@@ -1,0 +1,27 @@
+.body-container{
+    display:flex ;
+    justify-content: center;
+    margin-top: 80px;
+}
+.form-title{
+    padding: 20px;
+}
+label{
+    margin-bottom: 10px;
+}
+input{
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 6px;
+    
+}
+.submit-button{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+

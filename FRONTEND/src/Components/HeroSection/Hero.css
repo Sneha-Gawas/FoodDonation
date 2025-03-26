@@ -1,0 +1,66 @@
+.Header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 140px;
+}
+.Header h1{
+    font-size: 55px;
+}
+.Header p{
+    font-size: 27px;
+    padding: 10px;
+}
+.header-btns button{
+    font-size: 20px;
+    padding: 14px;
+    margin: 20px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.3);
+    transition: 0.4s;
+}
+.header-btns button:hover{
+    background-color: green;
+    color: white;
+    font-weight: 500px;
+}
+.works{
+    width: 80%;
+    margin: 40px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 25px;
+    border-radius: 10px;
+}
+.work{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
+    text-align: center;
+}
+.dwork{
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); 
+    padding: 20px; 
+    margin: 10px; 
+}
+.dwork h1{
+    padding: 5px;
+}
+.dwork p{
+    font-size: 20px;
+}
+#impact{
+    font-size: 40px;
+    color: green;
+}
+.footer{
+    padding: 10px;
+    text-align: center;
+    margin-top: 30px;
+    color: white;
+    font-size: 20px;
+    background-color:black;
+}
