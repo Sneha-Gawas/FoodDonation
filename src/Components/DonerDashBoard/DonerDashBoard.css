@@ -1,0 +1,32 @@
+.DonarDashBoard{
+    margin-top: 100px;
+}
+.food-items{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+}
+.food-item-card{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0,0,0.1);
+}
+.food-item-card h3,p{
+    padding: 5px;
+}
+.donor{
+    display: flex;
+    justify-content: space-between;
+    margin:5px;
+}
+.donor button{
+    padding: 10px;
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}

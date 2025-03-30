@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.Navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: green;
+    text-align: center;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+.Nav-links{
+    display: flex;
+    margin-left: auto; 
+    gap: 30px;  
+}
+.Nav-links h3 {
+    cursor: pointer;
+}
+.foodLogo h1{
+    cursor: pointer;
+}
