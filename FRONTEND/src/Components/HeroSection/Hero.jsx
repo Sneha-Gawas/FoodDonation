@@ -1,21 +1,23 @@
 import React from "react";
 import "./Hero.css"
 import { useNavigate } from "react-router-dom";
-
+import { assets } from "../../assets/assets";
 export default function Hero(){
     const navigate = useNavigate();
     return(
         <>
         <div className="Header">
+            <div className="content">
             <h1>Welcome to FoodShare</h1>
-            <p>Coonnecting food donors with NGOs to reduce food waste and feed those in need </p>
+            <p>Connecting food donors with NGOs to reduce food waste and feed those in need </p>
             <div className="header-btns">
                 <button onClick={()=>navigate("/foodlist/donor")}>I want to Donate Food</button>
                 
             </div>
-
+            </div>
+            <img src={assets.food} />
         </div>
-        
+      
         <div className="works">
             <h1>How It Works</h1>
             <div className="work">

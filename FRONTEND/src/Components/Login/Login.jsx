@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 export default function Login(){
     const navigate = useNavigate();
@@ -93,7 +94,8 @@ export default function Login(){
                   required/>
                 
                 <button>Log In</button>
-                  
+               
+               <Link to="/signup">I dont' have an account,Create one</Link>
             </form>
             <ToastContainer />
         </div>

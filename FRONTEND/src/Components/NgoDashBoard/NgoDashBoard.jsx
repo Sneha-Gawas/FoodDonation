@@ -8,7 +8,9 @@ import { useNavigate } from "react-router-dom";
 export default function NgoDashBoard() {
     const [userData, setUserData] = useState({});
     const [foodItems, setFoodItems] = useState([]);
+    const [claimedItems, setClaimedItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showClaimedItems, setShowClaimedItems] = useState(false);
     const navigate = useNavigate();
 
     // Function to fetch food items
@@ -20,6 +22,7 @@ export default function NgoDashBoard() {
             });
             console.log("Fetched food items:", result.data); // Add this to inspect the API response
             if (result.data && result.data.data) {
+                const filteredItems = result.data.data.filter(item => item.assignedNgo?._id === userData._id);
                 setFoodItems(result.data.data);  // Update state only if data exists
             } else {
                 toast.error("No food items found.");
@@ -76,16 +79,73 @@ export default function NgoDashBoard() {
             }
         }
     };
+    const fetchClaimedItems = async () => {
+        try {
+            const result = await axios.get("http://localhost:8080/donor/food", {
+                withCredentials: true,
+            });
+            if (result.data && result.data.data) {
+                const filteredItems = result.data.data.filter(item => item.assignedNgo?.username === userData.username);
+                setClaimedItems(filteredItems);
+                if (!showClaimedItems) {
+                    setFoodItems([]);
+                } else {
+                    fetchFoodItems();
+                }
+                setShowClaimedItems(!showClaimedItems);
+            } else {
+                toast.error("No claimed food items found.");
+            }
+        } catch (err) {
+            toast.error("Failed to fetch claimed food items. Please try again.");
+        }
+    };
 
     // Fetch food items and user data on component mount
     useEffect(() => {
         fetchFoodItems();
         fetchUserData();  // Fetch user data after component mount
     }, []);
+    
 
     return (
         <div className="NGODashboard">
             <h1>NGO Dashboard</h1>
+            <div className="user-info">
+                <h2> {userData.username}</h2>
+                
+            </div>
+            <button className="fetch" onClick={fetchClaimedItems}>View Claimed Items</button>
+             <br></br>
+            <div className="view">
+            
+
+            {showClaimedItems &&claimedItems.length > 0 && (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Donor Username</th>
+                            <th>Donor Contact</th>
+                            <th>Food Name</th>
+                            <th>Quantity</th>
+                            <th>NGO</th>
+                       
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {claimedItems.map((item) => (
+                            <tr key={item._id}>
+                                <td>{item.donor?.username}</td>
+                                <td>{item.donor?.contact}</td>
+                                <td>{item.foodName}</td>
+                                <td>{item.quantity}</td>
+                                <td>{item.assignedNgo?.username}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
+            </div>
             <ToastContainer />
             {loading ? (
                 <p>Loading available food items...</p>
@@ -96,9 +156,9 @@ export default function NgoDashBoard() {
                     {foodItems.map((item) => (
                         <div key={item._id} className="food-item-card">
                             <h3>{item.foodName}</h3>
-                            
-                            <p><strong>Organization:</strong> {item.assignedNgo}</p>
                             <p><strong>Quantity:</strong> {item.quantity}</p>
+                            <p><strong>Donor Username:</strong> {item.donor?.username}</p>
+                            <p><strong>Donor Contact:</strong> {item.donor?.contact}</p>
                             <div className="address">
                                 <p><strong>Street:</strong> {item.address?.street}</p>
                                 <p><strong>City:</strong> {item.address?.city}</p>

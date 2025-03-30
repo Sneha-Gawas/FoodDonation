@@ -50,7 +50,7 @@ const claimFoodOrder = async(req,res)=>{
 const getAvailableOders = async(req,res)=>{
     try{
         console.log("Requested User is",req.user)
-        const result = await FoodItem.find({status:"Available"}).populate('donor').sort({ createdAt: -1 })
+        const result = await FoodItem.find({status:"Available",assignedNgo: req.user._id,}).populate('donor').populate('assignedNgo').sort({ createdAt: -1 })
         console.log(result)
         res.status(200).send({success:true,msg:"Fetched all available food",data:result})
     }
@@ -58,7 +58,24 @@ const getAvailableOders = async(req,res)=>{
         res.status(500).send({success:false,msg:"Error While Fetching Food",error:err.message})
     }
 }
+const claimedOrders=async(req,res)=>{
+    try {
+        // Find food items where status is "Claimed" and populate donor details
+        const claimedItems = await FoodItem.find({ status: "Claimed" })
+            .populate("donor", "username contact")
+            .populate('assignedNgo',"username")
+            .select("foodName quantity donor");
 
+        if (!claimedItems.length) {
+            return res.status(404).json({ success: false, message: "No claimed items found." });
+        }
+
+        res.status(200).json({ success: true, data: claimedItems });
+    } catch (error) {
+        console.error("Error fetching claimed items:", error);
+        res.status(500).json({ success: false, message: "Server error. Please try again." });
+    }
+}
 const getFoodItems = async(req,res)=>{
     try{
         const {id} = req.params;
@@ -79,4 +96,5 @@ module.exports = {
     claimFoodOrder,
     getAvailableOders,
     getFoodItems,
+    claimedOrders,
 }

@@ -53,7 +53,7 @@ export default function DonerDashBoard() {
                 <p><b>Pincode:</b> {item.address.pinCode}</p>
               </div>
               <p><b>Status:</b> {item.status}</p>
-              <p><b>Assigned NGO:</b> {item.assignedNgo ? item.assignedNgo.username : "Not yet assigned"}</p>
+              <p><b>Selected NGO:</b> {item.assignedNgo ? item.assignedNgo.username : "Not yet assigned"}</p>
               <p><b>Claimed By:</b> {item.claimedBy ? item.claimedBy.username : "Available to claim"}</p>
               
             </div>
