@@ -16,6 +16,13 @@
     width: 100%;
     z-index: 100;
 }
+.foodLogo img {
+    height: 25px; /* Adjust height as needed */
+    /* Maintain aspect ratio */
+    max-width: 350px; /* Ensure it doesn’t get too large */
+    cursor: pointer;
+}
+
 .Nav-links{
     display: flex;
     margin-left: auto; 

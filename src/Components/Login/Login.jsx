@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
-
+const API_URL = process.env.REACT_APP_API_URL;
 export default function Login(){
     const navigate = useNavigate();
     const [user,setUser] = useState({
@@ -27,7 +27,7 @@ export default function Login(){
         formData.append("password",user.password)
 
         try{
-            const result = await axios.post("http://localhost:8080/api/login",user,{
+            const result = await axios.post(`${API_URL}/api/login`,user,{
                 withCredentials: true,  
             })
             console.log("Response of User logged in:",result)
@@ -73,14 +73,15 @@ export default function Login(){
 
     return(
         <div className="Login">
-            <h2>Log In</h2>
+      
             <form className="LoginForm" onSubmit={onSubmitHandler}>
+            <h2>Login</h2>
                 <label htmlFor="username">Username:</label>
                 <input 
                   type="text" 
                   name="username"
                   id="username"
-                  placeholder="Username"
+                  placeholder="Enter username"
                   onChange={onChangeHandler}
                   value={user.username} required/>
 
@@ -89,6 +90,7 @@ export default function Login(){
                   type="password" 
                   name="password"
                   id="password"
+                  placeholder="Enter password"
                   value={user.password}
                   onChange={onChangeHandler}
                   required/>

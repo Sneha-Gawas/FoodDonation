@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./SignUp.css"
 import { useNavigate } from "react-router-dom";
-
+const API_URL = process.env.REACT_APP_API_URL;
 const SignUp = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -47,7 +47,7 @@ const SignUp = () => {
     e.preventDefault();
     console.log(formData)
     try {
-        const response = await axios.post("http://localhost:8080/api/signup", formData,{
+        const response = await axios.post(`${API_URL}/api/signup`, formData,{
           withCredentials: true,  
       });
 
@@ -86,6 +86,7 @@ const SignUp = () => {
             className="input-field" 
             type="text"
             name="username"
+            placeholder="Enter username"
             value={username}
             onChange={handleChange}
             required
@@ -98,6 +99,7 @@ const SignUp = () => {
             className="input-field" 
             type="email"
             name="email"
+            placeholder="Enter email address"
             value={email}
             onChange={handleChange}
             required
@@ -110,6 +112,7 @@ const SignUp = () => {
             className="input-field" 
             type="password"
             name="password"
+            placeholder="Enter password"
             value={password}
             onChange={handleChange}
             required
@@ -122,6 +125,7 @@ const SignUp = () => {
             className="input-field" 
             type="text"
             name="contact"
+            placeholder="Enter contact"
             value={contact}
             onChange={handleChange}
             required
@@ -135,6 +139,7 @@ const SignUp = () => {
            className="input-field" 
             type="text"
             name="address.street"
+            placeholder="Enter street address"
             value={address.street}
             onChange={handleChange}
             required
@@ -147,6 +152,7 @@ const SignUp = () => {
             className="input-field" 
             type="text"
             name="address.city"
+            placeholder="Enter city"
             value={address.city}
             onChange={handleChange}
             required
@@ -159,6 +165,7 @@ const SignUp = () => {
             className="input-field" 
             type="text"
             name="address.state"
+            placeholder="Enter state"
             value={address.state}
             onChange={handleChange}
             required
@@ -171,6 +178,7 @@ const SignUp = () => {
             className="input-field" 
             type="text"
             name="address.country"
+            placeholder="Enter Country"
             value={address.country}
             onChange={handleChange}
             required
@@ -183,6 +191,7 @@ const SignUp = () => {
             className="input-field" 
             type="text"
             name="address.pinCode"
+            placeholder="Enter postal code"
             value={address.postalCode}
             onChange={handleChange}
             required

@@ -5,7 +5,8 @@ import { useState,useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-
+import { assets } from "../../assets/assets";
+const API_URL = process.env.REACT_APP_API_URL;
 export default function Navbar(){
     const location = useLocation();
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function Navbar(){
 
     const checkLoginStatus = async () => {
         try {
-            const result = await axios.get("http://localhost:8080/test", {
+            const result = await axios.get(`${API_URL}/test`, {
                 withCredentials: true, 
             });
             if (result.data.data) {
@@ -53,7 +54,7 @@ export default function Navbar(){
     }
     const handleLogout = async () => {
         try {
-            const result = await axios.get("http://localhost:8080/api/logout",{
+            const result = await axios.get(`${API_URL}/api/logout`,{
                 withCredentials: true,  
             });
             setLogin(false)
@@ -70,7 +71,7 @@ export default function Navbar(){
     return(
         <div className="Navbar">
             <div className="foodLogo">
-                <h1 onClick={()=>navigate("/")}>FoodShare</h1>
+            <h1 onClick={()=>navigate("/")}>Replate</h1>
             </div>
             <div className="Nav-links">
             {login ? (

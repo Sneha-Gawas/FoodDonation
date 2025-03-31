@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./NgoDashBoard.css";
 import { useNavigate } from "react-router-dom";
-
+const API_URL = process.env.REACT_APP_API_URL;
 export default function NgoDashBoard() {
     const [userData, setUserData] = useState({});
     const [foodItems, setFoodItems] = useState([]);
@@ -17,7 +17,7 @@ export default function NgoDashBoard() {
     const fetchFoodItems = async () => {
         try {
             console.log("Fetching food items..."); // Add this for debugging
-            const result = await axios.get("http://localhost:8080/donor/availableOrders", {
+            const result = await axios.get(`${API_URL}/donor/availableOrders`, {
                 withCredentials: true,
             });
             console.log("Fetched food items:", result.data); // Add this to inspect the API response
@@ -38,7 +38,7 @@ export default function NgoDashBoard() {
     // Function to fetch user data
     const fetchUserData = async () => {
         try {
-            const result = await axios.get("http://localhost:8080/test", {
+            const result = await axios.get(`${API_URL}/test`, {
                 withCredentials: true,
             });
             console.log("Fetched user data:", result.data); // Inspect user data response
@@ -60,7 +60,7 @@ export default function NgoDashBoard() {
         try {
             console.log("Claiming food item:", foodId);
             const result = await axios.post(
-                `http://localhost:8080/donor/claim/${foodId}`,
+                `${API_URL}/donor/claim/${foodId}`,
                 {},
                 {
                     withCredentials: true,
@@ -81,7 +81,7 @@ export default function NgoDashBoard() {
     };
     const fetchClaimedItems = async () => {
         try {
-            const result = await axios.get("http://localhost:8080/donor/food", {
+            const result = await axios.get(`${API_URL}/donor/food`, {
                 withCredentials: true,
             });
             if (result.data && result.data.data) {
