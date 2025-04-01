@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { assets } from "../../assets/assets";
-const API_URL = process.env.REACT_APP_API_URL;
+
 export default function Navbar(){
     const location = useLocation();
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ export default function Navbar(){
 
     const checkLoginStatus = async () => {
         try {
-            const result = await axios.get(`${API_URL}/info/test`, {
+            const result = await axios.get(`/info/test`, {
                 withCredentials: true, 
             });
             if (result.data.data) {
@@ -54,7 +54,7 @@ export default function Navbar(){
     }
     const handleLogout = async () => {
         try {
-            const result = await axios.get(`${API_URL}/info/api/logout`,{
+            const result = await axios.get(`/info/api/logout`,{
                 withCredentials: true,  
             });
             setLogin(false)

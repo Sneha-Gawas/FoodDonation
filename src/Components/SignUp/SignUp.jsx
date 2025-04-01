@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./SignUp.css"
 import { useNavigate } from "react-router-dom";
-const API_URL = process.env.REACT_APP_API_URL;
+
 const SignUp = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -47,7 +47,7 @@ const SignUp = () => {
     e.preventDefault();
     console.log(formData)
     try {
-        const response = await axios.post(`${API_URL}/info/api/signup`, formData,{
+        const response = await axios.post(`/info/api/signup`, formData,{
           withCredentials: true,  
       });
 

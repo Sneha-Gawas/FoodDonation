@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./DonerDashBoard.css";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-const API_URL = process.env.REACT_APP_API_URL;
 
-fetch(`${API_URL}/info/users`)
+
+fetch(`/info/users`)
   .then(response => response.json())
   .then(data => console.log(data))
   .catch(error => console.error(error));
@@ -17,7 +17,7 @@ export default function DonerDashBoard() {
 
   const fetchData = async () => {
     try {
-      const result = await axios.get(`${API_URL}/info/donor/fooditems/${id}`, {
+      const result = await axios.get(`/info/donor/fooditems/${id}`, {
         withCredentials: true,
         params: { populate: "assignedNgo claimedBy donor" },
       });

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
-const API_URL = process.env.REACT_APP_API_URL;
+
 export default function Login(){
     const navigate = useNavigate();
     const [user,setUser] = useState({
@@ -27,7 +27,7 @@ export default function Login(){
         formData.append("password",user.password)
 
         try{
-            const result = await axios.post(`${API_URL}/info/api/login`,user,{
+            const result = await axios.post(`/info/api/login`,user,{
                 withCredentials: true,  
             })
             console.log("Response of User logged in:",result)
