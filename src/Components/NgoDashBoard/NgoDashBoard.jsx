@@ -17,7 +17,7 @@ export default function NgoDashBoard() {
     const fetchFoodItems = async () => {
         try {
             console.log("Fetching food items..."); // Add this for debugging
-            const result = await axios.get(`${API_URL}/donor/availableOrders`, {
+            const result = await axios.get(`${API_URL}/info/donor/availableOrders`, {
                 withCredentials: true,
             });
             console.log("Fetched food items:", result.data); // Add this to inspect the API response
@@ -38,7 +38,7 @@ export default function NgoDashBoard() {
     // Function to fetch user data
     const fetchUserData = async () => {
         try {
-            const result = await axios.get(`${API_URL}/test`, {
+            const result = await axios.get(`${API_URL}/info/test`, {
                 withCredentials: true,
             });
             console.log("Fetched user data:", result.data); // Inspect user data response
@@ -60,7 +60,7 @@ export default function NgoDashBoard() {
         try {
             console.log("Claiming food item:", foodId);
             const result = await axios.post(
-                `${API_URL}/donor/claim/${foodId}`,
+                `${API_URL}/info/donor/claim/${foodId}`,
                 {},
                 {
                     withCredentials: true,
@@ -81,7 +81,7 @@ export default function NgoDashBoard() {
     };
     const fetchClaimedItems = async () => {
         try {
-            const result = await axios.get(`${API_URL}/donor/food`, {
+            const result = await axios.get(`${API_URL}/info/donor/food`, {
                 withCredentials: true,
             });
             if (result.data && result.data.data) {

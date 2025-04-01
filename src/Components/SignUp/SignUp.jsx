@@ -47,7 +47,7 @@ const SignUp = () => {
     e.preventDefault();
     console.log(formData)
     try {
-        const response = await axios.post(`${API_URL}/api/signup`, formData,{
+        const response = await axios.post(`${API_URL}/info/api/signup`, formData,{
           withCredentials: true,  
       });
 

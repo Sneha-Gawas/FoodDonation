@@ -25,7 +25,7 @@ export default function DonorForm() {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const { data } = await axios.get(`${API_URL}/test`, { withCredentials: true });
+                const { data } = await axios.get(`${API_URL}/info/test`, { withCredentials: true });
                 if (!data.data || !data.data._id) return navigate("/login");
                 setUserData(data.data);
             } catch (error) {
@@ -36,7 +36,7 @@ export default function DonorForm() {
 
         const fetchNgos = async () => {
             try {
-                const { data } = await axios.get(`${API_URL}/api/ngos`);
+                const { data } = await axios.get(`${API_URL}/info/api/ngos`);
                 setNgos(data.data);
             } catch (error) {
                 console.error("NGO fetch error:", error);
@@ -67,7 +67,7 @@ export default function DonorForm() {
         try {
             const payload = { ...FoodDetails, donor: userData._id };
 
-            await axios.post(`${API_URL}/donor/add`, payload, { withCredentials: true });
+            await axios.post(`${API_URL}/info/donor/add`, payload, { withCredentials: true });
             toast.success("Food Listed Successfully!", { autoClose: 2000 });
 
             navigate(`/donor/${userData._id}`);

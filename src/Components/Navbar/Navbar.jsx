@@ -17,7 +17,7 @@ export default function Navbar(){
 
     const checkLoginStatus = async () => {
         try {
-            const result = await axios.get(`${API_URL}/test`, {
+            const result = await axios.get(`${API_URL}/info/test`, {
                 withCredentials: true, 
             });
             if (result.data.data) {
@@ -54,7 +54,7 @@ export default function Navbar(){
     }
     const handleLogout = async () => {
         try {
-            const result = await axios.get(`${API_URL}/api/logout`,{
+            const result = await axios.get(`${API_URL}/info/api/logout`,{
                 withCredentials: true,  
             });
             setLogin(false)

@@ -27,7 +27,7 @@ export default function Login(){
         formData.append("password",user.password)
 
         try{
-            const result = await axios.post(`${API_URL}/api/login`,user,{
+            const result = await axios.post(`${API_URL}/info/api/login`,user,{
                 withCredentials: true,  
             })
             console.log("Response of User logged in:",result)
